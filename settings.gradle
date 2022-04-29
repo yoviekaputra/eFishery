@@ -14,3 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "eFishery"
 include ':app'
+include ':core:network'
+include ':core:abstractions'
+include ':core:themes'
