@@ -43,4 +43,6 @@ dependencies {
     implementationHilt()
 
     implementationRetrofit()
+
+    implementationCoroutines()
 }
