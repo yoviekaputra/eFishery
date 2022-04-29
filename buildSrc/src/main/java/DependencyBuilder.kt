@@ -6,6 +6,12 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
  * @project eFishery
  **/
 
+fun DependencyHandler.implementationCore() {
+    implementation(Libs.Core.coreKtx)
+    implementation(Libs.Core.appCompat)
+    implementation(Libs.Core.material)
+}
+
 // implement the requirement of compose dependencies
 fun DependencyHandler.implementationsCompose() {
     implementation(Libs.Compose.ui)
