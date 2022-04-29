@@ -15,4 +15,10 @@ object Config {
     const val versionName = "1.0.0"
 
     const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    const val consumerRulesLibrary = "consumer-rules.pro"
+
+    const val enableMinifyDebug = false
+    const val enableShrinkDebug = false
+    const val enableMinify = false
+    const val enableShrink = false
 }

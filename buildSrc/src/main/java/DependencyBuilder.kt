@@ -13,7 +13,7 @@ fun DependencyHandler.implementationCore() {
 }
 
 // implement the requirement of compose dependencies
-fun DependencyHandler.implementationsCompose() {
+fun DependencyHandler.implementationCompose() {
     implementation(Libs.Compose.ui)
     implementation(Libs.Compose.material)
     implementation(Libs.Compose.uiToolingPreview)
@@ -25,9 +25,10 @@ fun DependencyHandler.implementationsCompose() {
 }
 
 // implement the requirement of hilt dependencies
-fun DependencyHandler.implementationsHilt() {
+fun DependencyHandler.implementationHilt() {
     implementation(Libs.Hilt.hilt)
     kapt(Libs.Hilt.compiler)
+    kapt(Libs.Hilt.hiltCompiler)
 
     // For instrumentation tests
     androidTestImplementation(Libs.Hilt.androidTesting)
@@ -46,7 +47,7 @@ fun DependencyHandler.implementationCoroutines() {
 }
 
 // implement the requirement of room dependencies
-fun DependencyHandler.implementationsRoom() {
+fun DependencyHandler.implementationRoom() {
     implementation(Libs.Room.runtime)
     ksp(Libs.Room.compiler)
     implementation(Libs.Room.ktx)
@@ -57,11 +58,18 @@ fun DependencyHandler.implementationsRoom() {
 fun DependencyHandler.implementationWorkManager() {
     implementation(Libs.WorkManager.runtime)
     implementation(Libs.WorkManager.test)
+
+    implementation(Libs.WorkManager.hilt)
 }
 
 // implement the requirement of testing dependencies
-fun DependencyHandler.implementationsTest() {
+fun DependencyHandler.implementationTest() {
     implementation(Libs.Test.espressoCore)
     implementation(Libs.Test.junit)
     implementation(Libs.Test.junitExt)
+}
+
+fun DependencyHandler.implementationRetrofit() {
+    implementation(Libs.Retrofit.retrofit)
+    implementation(Libs.Retrofit.moshi)
 }

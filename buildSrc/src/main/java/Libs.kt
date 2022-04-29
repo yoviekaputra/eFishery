@@ -51,9 +51,6 @@ object Libs {
         const val localAndroidTesting =
             "com.google.dagger:hilt-android-testing:${Version.Hilt.core}"
         const val localTestCompiler = "com.google.dagger:hilt-compiler:${Version.Hilt.core}"
-
-        // Hilt Worker
-        const val worker = "androidx.hilt:hilt-work:${Version.Hilt.core}"
     }
 
     object Coroutines {
@@ -72,6 +69,9 @@ object Libs {
     object WorkManager {
         const val runtime = "androidx.work:work-runtime-ktx:${Version.workManager}"
         const val test = "androidx.work:work-testing:${Version.workManager}"
+
+        // Hilt Worker
+        const val hilt = "androidx.hilt:hilt-work:${Version.Hilt.core}"
     }
 
     object Test {

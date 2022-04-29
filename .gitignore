@@ -117,3 +117,6 @@ local.properties
 /buildSrc/build/classes/kotlin/main/Modules$Core.class
 /buildSrc/build/classes/kotlin/main/Modules$Features.class
 /buildSrc/build/classes/kotlin/main/Modules.class
+/.idea/deploymentTargetDropDown.xml
+/buildSrc/build/classes/kotlin/main/Plugins.class
+/buildSrc/build/classes/kotlin/main/Version$Plugin.class

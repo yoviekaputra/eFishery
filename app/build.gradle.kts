@@ -17,8 +17,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = Config.enableMinifyDebug
+            isShrinkResources = Config.enableShrinkDebug
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            )
+        }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = Config.enableMinify
+            isShrinkResources = Config.enableShrink
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
@@ -37,6 +45,7 @@ android {
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = Version.Compose.compose
     }
@@ -45,7 +54,7 @@ android {
 dependencies {
     implementationCore()
 
-    implementationsCompose()
+    implementationCompose()
 
-    implementationsTest()
+    implementationTest()
 }

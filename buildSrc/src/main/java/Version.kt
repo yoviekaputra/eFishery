@@ -40,4 +40,10 @@ object Version {
         const val junitExt = "1.1.3"
         const val espressoCore = "3.4.0"
     }
+
+    object Plugin {
+        const val application = "7.1.1"
+        const val library = "7.1.1"
+        const val kotlin = "1.6.10"
+    }
 }
