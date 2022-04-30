@@ -1,10 +1,8 @@
 package com.github.yoviep.syncronize.data.repository
 
+import android.util.Log
 import com.github.yoviep.syncronize.data.source.remote.RemoteDataSource
 import com.github.yoviep.syncronize.domain.repository.SyncRepository
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
 
 
@@ -18,31 +16,18 @@ class SyncRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : SyncRepository {
 
-    override suspend fun sync(): Unit = coroutineScope {
-        val synchronizing = listOf(
-            async {
-                syncCommodities()
-            },
-            async {
-                syncAreas()
-            },
-            async {
-                syncSizes()
-            }
-        )
-
-        synchronizing.awaitAll()
-    }
-
-    private suspend fun syncCommodities() {
+    override suspend fun syncCommodities() {
         remoteDataSource.getCommodities()
+        Log.d("SyncRepositoryImpl", "syncCommodities")
     }
 
-    private suspend fun syncAreas() {
+    override suspend fun syncAreas() {
         remoteDataSource.getAreas()
+        Log.d("SyncRepositoryImpl", "syncAreas")
     }
 
-    private suspend fun syncSizes() {
+    override suspend fun syncSizes() {
         remoteDataSource.getSizes()
+        Log.d("SyncRepositoryImpl", "syncSizes")
     }
 }

@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
 android {
@@ -57,4 +59,12 @@ dependencies {
     implementationCompose()
 
     implementationTest()
+    
+    implementationHilt()
+
+    implementationWorkManager()
+
+    implementation(project(Modules.Features.home))
+
+    implementation(project(Modules.Features.syncronize))
 }

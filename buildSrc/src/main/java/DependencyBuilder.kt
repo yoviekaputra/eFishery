@@ -72,4 +72,6 @@ fun DependencyHandler.implementationRetrofit() {
     implementation(Libs.Retrofit.retrofit)
     implementation(Libs.Retrofit.okHttpLogger)
     api(Libs.Retrofit.moshi)
+    api(Libs.Retrofit.moshiKotlin)
+    kapt(Libs.Retrofit.codegen)
 }

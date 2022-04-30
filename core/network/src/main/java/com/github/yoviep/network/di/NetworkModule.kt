@@ -1,6 +1,8 @@
 package com.github.yoviep.network.di
 
 import com.github.yoviep.network.models.ApiConstant
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,7 +44,11 @@ class NetworkModule {
     fun provideRetrofit(httpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(ApiConstant.BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(
+                Moshi.Builder()
+                    .add(KotlinJsonAdapterFactory())
+                    .build()
+            ))
             .client(httpClient)
             .build()
 }

@@ -9,5 +9,9 @@ package com.github.yoviep.syncronize.domain.repository
 
 interface SyncRepository {
 
-    suspend fun sync()
+    suspend fun syncCommodities()
+
+    suspend fun syncAreas()
+
+    suspend fun syncSizes()
 }

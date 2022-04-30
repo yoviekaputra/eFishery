@@ -35,8 +35,10 @@ object Libs {
 
     object Retrofit {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Version.Retrofit.retrofit}"
-        const val moshi = "com.squareup.retrofit2:converter-moshi:${Version.Retrofit.retrofit}"
         const val okHttpLogger = "com.squareup.okhttp3:logging-interceptor:${Version.Retrofit.okHttp}"
+        const val moshi = "com.squareup.retrofit2:converter-moshi:${Version.Retrofit.retrofit}"
+        const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:${Version.Retrofit.moshiKotlin}"
+        const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:${Version.Retrofit.moshiKotlin}"
     }
 
     object Hilt {

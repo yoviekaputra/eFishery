@@ -32,6 +32,7 @@ object Version {
     }
 
     object Retrofit {
+        const val moshiKotlin = "1.13.0"
         const val retrofit = "2.9.0"
         const val okHttp = "4.9.3"
     }
