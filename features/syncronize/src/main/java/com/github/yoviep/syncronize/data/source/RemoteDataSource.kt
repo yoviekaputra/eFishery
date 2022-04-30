@@ -1,4 +1,4 @@
-package com.github.yoviep.syncronize.data.source.remote
+package com.github.yoviep.syncronize.data.source
 
 import com.github.yoviep.syncronize.data.source.remote.models.AreaResponse
 import com.github.yoviep.syncronize.data.source.remote.models.CommodityResponse

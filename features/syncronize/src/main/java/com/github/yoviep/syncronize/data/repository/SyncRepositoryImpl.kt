@@ -1,7 +1,8 @@
 package com.github.yoviep.syncronize.data.repository
 
-import android.util.Log
-import com.github.yoviep.syncronize.data.source.remote.RemoteDataSource
+import com.github.yoviep.syncronize.data.source.LocalDataSource
+import com.github.yoviep.syncronize.data.source.RemoteDataSource
+import com.github.yoviep.syncronize.data.source.remote.models.asEntity
 import com.github.yoviep.syncronize.domain.repository.SyncRepository
 import javax.inject.Inject
 
@@ -13,21 +14,22 @@ import javax.inject.Inject
  **/
 
 class SyncRepositoryImpl @Inject constructor(
-    private val remoteDataSource: RemoteDataSource
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource
 ) : SyncRepository {
 
     override suspend fun syncCommodities() {
-        remoteDataSource.getCommodities()
-        Log.d("SyncRepositoryImpl", "syncCommodities")
+        val commodities = remoteDataSource.getCommodities()
+        localDataSource.insertCommodity(data = commodities.asEntity())
     }
 
     override suspend fun syncAreas() {
-        remoteDataSource.getAreas()
-        Log.d("SyncRepositoryImpl", "syncAreas")
+        val areas = remoteDataSource.getAreas()
+        localDataSource.insertArea(data = areas.asEntity())
     }
 
     override suspend fun syncSizes() {
-        remoteDataSource.getSizes()
-        Log.d("SyncRepositoryImpl", "syncSizes")
+        val sizes = remoteDataSource.getSizes()
+        localDataSource.insertSize(data = sizes.asEntity())
     }
 }

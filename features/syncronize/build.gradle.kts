@@ -49,4 +49,6 @@ dependencies {
     implementation(project(Modules.Core.network))
 
     implementation(project(Modules.Core.abstractions))
+
+    implementation(project(Modules.database))
 }

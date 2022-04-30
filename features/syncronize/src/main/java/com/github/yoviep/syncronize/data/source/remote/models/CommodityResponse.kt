@@ -1,5 +1,6 @@
 package com.github.yoviep.syncronize.data.source.remote.models
 
+import com.github.yoviep.database.entity.CommodityEntity
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -12,6 +13,8 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class CommodityResponse(
+    @field:Json(name = "uuid")
+    val uuid: String?,
     @field:Json(name = "area_kota")
     val areaCity: String?,
     @field:Json(name = "area_provinsi")
@@ -25,7 +28,20 @@ data class CommodityResponse(
     @field:Json(name = "tgl_parsed")
     val tglParsed: String?,
     @field:Json(name = "timestamp")
-    val timestamp: String?,
-    @field:Json(name = "uuid")
-    val uuid: String?
+    val timestamp: String?
 )
+
+fun CommodityResponse.asEntity() = CommodityEntity(
+    uuid = uuid.orEmpty(),
+    areaCity = areaCity,
+    areaProvince = areaProvince,
+    commodity = commodity,
+    price = price,
+    size = size,
+    tglParsed = tglParsed,
+    timestamp = timestamp
+)
+
+fun List<CommodityResponse>.asEntity() = map {
+    it.asEntity()
+}

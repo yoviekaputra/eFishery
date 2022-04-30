@@ -1,7 +1,7 @@
 package com.github.yoviep.syncronize.di
 
-import com.github.yoviep.syncronize.data.source.RemoteDataSource
-import com.github.yoviep.syncronize.data.source.remote.RemoteDataSourceImpl
+import com.github.yoviep.syncronize.data.source.LocalDataSource
+import com.github.yoviep.syncronize.data.source.local.LocalDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,11 +17,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RemoteDataSourceModule {
+abstract class LocalDataSourceModule {
 
     @Binds
     @Singleton
-    abstract fun bindRemoteDataSource(
-        dataSource: RemoteDataSourceImpl
-    ): RemoteDataSource
+    abstract fun bindLocalDataSource(
+        dataSource: LocalDataSourceImpl
+    ): LocalDataSource
 }

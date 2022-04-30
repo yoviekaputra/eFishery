@@ -6,6 +6,8 @@
 
 object Modules {
 
+    const val database = ":database"
+
     object Core {
         const val network = ":core:network"
         const val abstractions = ":core:abstractions"

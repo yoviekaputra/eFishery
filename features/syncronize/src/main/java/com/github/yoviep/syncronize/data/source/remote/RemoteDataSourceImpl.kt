@@ -1,7 +1,7 @@
-package com.github.yoviep.syncronize.data.source.remote.impl
+package com.github.yoviep.syncronize.data.source.remote
 
 import com.github.yoviep.abstractions.di.IoDispatcher
-import com.github.yoviep.syncronize.data.source.remote.RemoteDataSource
+import com.github.yoviep.syncronize.data.source.RemoteDataSource
 import com.github.yoviep.syncronize.data.source.remote.api.ApiService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -30,5 +30,4 @@ class RemoteDataSourceImpl @Inject constructor(
     override suspend fun getSizes() = withContext(ioDispatcher) {
         apiService.getSizes()
     }
-
 }
