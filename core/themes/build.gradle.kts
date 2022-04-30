@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("dagger.hilt.android.plugin")
     kotlin("kapt")
 }
 
@@ -35,18 +34,5 @@ android {
 }
 
 dependencies {
-
     implementationCore()
-
-    implementationTest()
-
-    implementationHilt()
-
-    implementationCoroutines()
-
-    implementationWorkManager()
-
-    implementation(project(Modules.Core.network))
-
-    implementation(project(Modules.Core.abstractions))
 }
