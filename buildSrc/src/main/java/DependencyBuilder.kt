@@ -56,10 +56,9 @@ fun DependencyHandler.implementationRoom() {
 
 // implement the requirement of work manager dependencies
 fun DependencyHandler.implementationWorkManager() {
+    implementation(Libs.WorkManager.hilt)
     api(Libs.WorkManager.runtime)
     androidTestApi(Libs.WorkManager.test)
-
-    implementation(Libs.WorkManager.hilt)
 }
 
 // implement the requirement of testing dependencies
