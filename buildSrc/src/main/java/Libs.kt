@@ -71,7 +71,7 @@ object Libs {
         const val test = "androidx.work:work-testing:${Version.workManager}"
 
         // Hilt Worker
-        const val hilt = "androidx.hilt:hilt-work:${Version.Hilt.core}"
+        const val hilt = "androidx.hilt:hilt-work:${Version.Hilt.androidX}"
     }
 
     object Test {

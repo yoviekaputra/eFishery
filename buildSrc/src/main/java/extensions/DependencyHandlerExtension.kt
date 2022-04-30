@@ -38,3 +38,11 @@ fun DependencyHandler.debugImplementation(dependencyNotation: String) {
 fun DependencyHandler.ksp(dependencyNotation: String) {
     add("ksp", dependencyNotation)
 }
+
+fun DependencyHandler.api(dependencyNotation: Any) {
+    add("api", dependencyNotation)
+}
+
+fun DependencyHandler.androidTestApi(dependencyNotation: Any) {
+    add("androidTestApi", dependencyNotation)
+}
