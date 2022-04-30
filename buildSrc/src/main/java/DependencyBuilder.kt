@@ -70,5 +70,5 @@ fun DependencyHandler.implementationTest() {
 
 fun DependencyHandler.implementationRetrofit() {
     implementation(Libs.Retrofit.retrofit)
-    implementation(Libs.Retrofit.moshi)
+    api(Libs.Retrofit.moshi)
 }

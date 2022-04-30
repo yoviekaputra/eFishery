@@ -19,7 +19,7 @@ android {
     buildTypes {
         release {
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+                    getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -43,10 +43,4 @@ dependencies {
     implementationHilt()
 
     implementationCoroutines()
-
-    implementationWorkManager()
-
-    implementation(project(Modules.Core.network))
-
-    implementation(project(Modules.Core.abstractions))
 }
