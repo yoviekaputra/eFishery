@@ -23,7 +23,8 @@ data class HomeUiState(
 
     private val areas: List<Area> = emptyList(),
     val filterByArea: Area? = null,
-    val sortBy: SortingUiModel? = null
+    val sortBy: SortingUiModel? = null,
+    val keyword: String? = null
 ) {
 
     fun getSortingList(context: Context): List<SortingUiModel> {

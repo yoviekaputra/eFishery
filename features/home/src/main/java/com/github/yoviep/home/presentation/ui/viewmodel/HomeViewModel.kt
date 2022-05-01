@@ -2,12 +2,14 @@ package com.github.yoviep.home.presentation.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.yoviep.home.domain.models.Area
 import com.github.yoviep.home.domain.models.CommodityFilter
 import com.github.yoviep.home.domain.usecases.AddCommodityUseCase
 import com.github.yoviep.home.domain.usecases.GetAreaUseCase
 import com.github.yoviep.home.domain.usecases.GetCommodityUseCase
 import com.github.yoviep.home.presentation.models.HomeEventState
 import com.github.yoviep.home.presentation.models.HomeUiState
+import com.github.yoviep.home.presentation.ui.dialog.sorting.SortingUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -45,7 +47,8 @@ class HomeViewModel @Inject constructor(
             getCommodityUseCase.invoke(
                 filter = CommodityFilter(
                     sortBy = _uiState.value.sortBy?.key,
-                    filterByArea = _uiState.value.filterByArea?.province
+                    filterByArea = _uiState.value.filterByArea?.province,
+                    name = _uiState.value.keyword
                 ),
             ).onStart {
                 _uiState.update {
@@ -70,41 +73,77 @@ class HomeViewModel @Inject constructor(
     fun onEventState(event: HomeEventState) {
         when (event) {
             is HomeEventState.OnSortingClick -> {
-                _uiState.update {
-                    it.copy(showSortDialog = true)
-                }
+                onSortingClick()
             }
             is HomeEventState.OnSortingClicked -> {
-                _uiState.update {
-                    it.copy(
-                        sortBy = if (event.sort.key == null) {
-                            null
-                        } else {
-                            event.sort
-                        },
-                        showSortDialog = false
-                    )
-                }
-                getCommodity()
+                onSortingClicked(sort = event.sort)
             }
             is HomeEventState.OnFilterClick -> {
-                _uiState.update {
-                    it.copy(showFilterDialog = true)
-                }
+                onFilterClick()
             }
             is HomeEventState.OnFilterClicked -> {
-                _uiState.update {
-                    it.copy(
-                        filterByArea = if (event.area.province == "Semua") {
-                            null
-                        } else {
-                            event.area
-                        },
-                        showFilterDialog = false
-                    )
-                }
-                getCommodity()
+                onFilterClicked(area = event.area)
             }
+            is HomeEventState.OnSearchChanged -> {
+                onSearchChanged(keyword = event.keyword)
+            }
+            is HomeEventState.OnSearchClear -> {
+                onSearchClear()
+            }
+        }
+    }
+
+    private fun onSearchClear() {
+        _uiState.update {
+            it.copy(keyword = null)
+        }
+        getCommodity()
+    }
+
+    private fun onSearchChanged(keyword: String) {
+        _uiState.update {
+            it.copy(keyword = keyword)
+        }
+        getCommodity()
+    }
+
+    private fun onFilterClicked(area: Area) {
+        _uiState.update {
+            it.copy(
+                filterByArea = if (area.province == "Semua") {
+                    null
+                } else {
+                    area
+                },
+                showFilterDialog = false
+            )
+        }
+        getCommodity()
+    }
+
+    private fun onFilterClick() {
+        _uiState.update {
+            it.copy(showFilterDialog = true)
+        }
+    }
+
+    private fun onSortingClicked(sort: SortingUiModel) {
+        _uiState.update {
+            it.copy(
+                sortBy = if (sort.key == null) {
+                    null
+                } else {
+                    sort
+                },
+                showSortDialog = false
+            )
+        }
+        getCommodity()
+    }
+
+    private fun onSortingClick() {
+        _uiState.update {
+            it.copy(showSortDialog = true)
         }
     }
 }

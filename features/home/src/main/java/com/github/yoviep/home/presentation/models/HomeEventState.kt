@@ -16,4 +16,7 @@ sealed class HomeEventState {
 
     object OnFilterClick : HomeEventState()
     data class OnFilterClicked(val area: Area) : HomeEventState()
+
+    data class OnSearchChanged(val keyword: String) : HomeEventState()
+    object OnSearchClear : HomeEventState()
 }

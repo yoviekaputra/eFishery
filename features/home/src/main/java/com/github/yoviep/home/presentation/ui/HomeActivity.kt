@@ -32,7 +32,11 @@ class HomeActivity : AppCompatActivity() {
                 onFilterClick = {
                     viewModel.onEventState(HomeEventState.OnFilterClick)
                 },
-                onSearchClick = {
+                onSearchChanged = {
+                    viewModel.onEventState(HomeEventState.OnSearchChanged(it))
+                },
+                onSearchClear = {
+                    viewModel.onEventState(HomeEventState.OnSearchClear)
                 },
                 onAddClick = {
                 }

@@ -28,10 +28,22 @@ class LocalDataSourceImpl @Inject constructor(
         val args = mutableListOf<Any>()
         val query = StringBuilder("SELECT * FROM commodity")
 
-        // compose filter by area
-        filter.filterByArea?.let { area ->
-            query.append(" WHERE area_province LIKE upper('%' || ? || '%')")
-            args.add(area)
+        if (filter.filterByArea != null || filter.name != null) {
+            query.append(" WHERE ")
+
+            // compose filter by area
+            filter.filterByArea?.let { area ->
+                query.append("area_province LIKE upper('%' || ? || '%') AND ")
+                args.add(area)
+            }
+
+            filter.name?.let { keyword ->
+                query.append("commodity LIKE upper('%' || ? || '%') AND ")
+                args.add(keyword)
+            }
+
+            // balance query connotation
+            query.append("1 = 1")
         }
 
         // compose sort
