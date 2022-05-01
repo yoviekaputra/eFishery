@@ -3,7 +3,6 @@ package com.github.yoviep.home.data.source
 import com.github.yoviep.abstractions.di.IoDispatcher
 import com.github.yoviep.database.dao.AreaDao
 import com.github.yoviep.database.dao.CommodityDao
-import com.github.yoviep.database.entity.AreaEntity
 import com.github.yoviep.database.entity.CommodityEntity
 import com.github.yoviep.home.domain.models.CommodityFilter
 import com.github.yoviep.home.domain.models.Sorting

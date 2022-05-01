@@ -14,8 +14,8 @@ data class CommodityFilter(
 )
 
 sealed class Sorting {
-    object LowestPrice: Sorting()
+    object LowestPrice : Sorting()
     object HighestPrice : Sorting()
-    object LowestSize: Sorting()
+    object LowestSize : Sorting()
     object HighestSize : Sorting()
 }

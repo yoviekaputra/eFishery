@@ -29,7 +29,7 @@ fun CommodityItem(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .clickable {  }
+            .clickable { }
             .padding(
                 horizontal = 16.dp,
                 vertical = 8.dp

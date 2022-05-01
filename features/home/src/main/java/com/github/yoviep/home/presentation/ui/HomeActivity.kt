@@ -51,7 +51,7 @@ class HomeActivity : AppCompatActivity() {
             if (uiState.value.showFilterDialog) {
                 FilterDialog(
                     onCheckedClick = {
-                         viewModel.onEventState(HomeEventState.OnFilterClicked(it))
+                        viewModel.onEventState(HomeEventState.OnFilterClicked(it))
                     },
                     filtering = uiState.value.getAreas(),
                     checked = uiState.value.filterByArea

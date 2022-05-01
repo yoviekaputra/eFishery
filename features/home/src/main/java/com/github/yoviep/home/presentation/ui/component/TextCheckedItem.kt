@@ -32,7 +32,8 @@ fun TextCheckedItem(
             .height(48.dp)
             .clickable {
                 onClick.invoke()
-            }.padding(
+            }
+            .padding(
                 horizontal = 16.dp,
                 vertical = 8.dp
             ),
