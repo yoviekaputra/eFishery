@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class SizeResponse(
-    @field:Json(name = "size")
+    @Json(name = "size")
     val size: String
 )
 

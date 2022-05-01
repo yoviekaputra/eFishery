@@ -59,7 +59,7 @@ dependencies {
     implementationCompose()
 
     implementationTest()
-    
+
     implementationHilt()
 
     implementationWorkManager()
@@ -67,4 +67,6 @@ dependencies {
     implementation(project(Modules.Features.home))
 
     implementation(project(Modules.Features.syncronize))
+
+    implementation(project(Modules.Core.themes))
 }

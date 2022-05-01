@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".HomeActivity"
+            android:name=".presentation.ui.HomeActivity"
             android:exported="false" />
     </application>
 

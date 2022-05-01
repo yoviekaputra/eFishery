@@ -32,6 +32,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Version.Compose.compose
+    }
 }
 
 dependencies {
@@ -39,6 +47,8 @@ dependencies {
     implementationCore()
 
     implementationTest()
+
+    implementationCompose()
 
     implementationHilt()
 
@@ -49,4 +59,8 @@ dependencies {
     implementation(project(Modules.Core.network))
 
     implementation(project(Modules.Core.abstractions))
+
+    implementation(project(Modules.database))
+
+    implementation(project(Modules.Core.themes))
 }

@@ -6,9 +6,9 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class AreaResponse(
-    @field:Json(name = "city")
+    @Json(name = "city")
     val city: String,
-    @field:Json(name = "province")
+    @Json(name = "province")
     val province: String
 )
 

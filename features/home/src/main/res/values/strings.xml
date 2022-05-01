@@ -1,1 +1,6 @@
-<resources></resources>
+<resources>
+
+    <string name="size">Ukuran %s</string>
+    <string name="filter">Area</string>
+    <string name="sorting">Urutkan</string>
+</resources>

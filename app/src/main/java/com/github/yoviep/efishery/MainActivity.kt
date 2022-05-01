@@ -1,11 +1,15 @@
 package com.github.yoviep.efishery
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import com.github.yoviep.home.presentation.ui.HomeActivity
 import com.github.yoviep.syncronize.worker.SyncWorker
 import java.util.concurrent.TimeUnit
 
@@ -20,6 +24,12 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         initWorker()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            val home = Intent(this, HomeActivity::class.java)
+            startActivity(home)
+            finish()
+        }, 1000)
     }
 
     private fun initWorker() {
