@@ -1,5 +1,6 @@
 package com.github.yoviep.home.presentation.models
 
+import com.github.yoviep.home.domain.models.Area
 import com.github.yoviep.home.domain.models.Commodity
 import com.github.yoviep.home.presentation.ui.dialog.sorting.SortingUiModel
 
@@ -17,6 +18,7 @@ data class HomeUiState(
     val showSortDialog: Boolean = false,
     val showFilterDialog: Boolean = false,
 
-    val filterByArea: String? = null,
+    val areas: List<Area> = emptyList(),
+    val filterByArea: Area? = null,
     val sortBy: SortingUiModel? = null
 )

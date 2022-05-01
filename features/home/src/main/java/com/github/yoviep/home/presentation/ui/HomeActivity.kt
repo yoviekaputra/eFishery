@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.collectAsState
 import com.github.yoviep.home.presentation.models.HomeEventState
+import com.github.yoviep.home.presentation.ui.dialog.filter.FilterDialog
 import com.github.yoviep.home.presentation.ui.dialog.sorting.SortDialog
 import com.github.yoviep.home.presentation.ui.dialog.sorting.SortingUiModel
 import com.github.yoviep.home.presentation.ui.viewmodel.HomeViewModel
@@ -30,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
                     viewModel.onEventState(HomeEventState.OnSortingClick)
                 },
                 onFilterClick = {
+                    viewModel.onEventState(HomeEventState.OnFilterClick)
                 },
                 onSearchClick = {
                 },
@@ -44,6 +46,16 @@ class HomeActivity : AppCompatActivity() {
                     },
                     sorting = SortingUiModel.getSortingList(this),
                     checked = uiState.value.sortBy
+                )
+            }
+
+            if (uiState.value.showFilterDialog) {
+                FilterDialog(
+                    onCheckedClick = {
+                         viewModel.onEventState(HomeEventState.OnFilterClicked(it))
+                    },
+                    filtering = uiState.value.areas,
+                    checked = uiState.value.filterByArea
                 )
             }
         }

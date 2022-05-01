@@ -1,5 +1,6 @@
 package com.github.yoviep.home.presentation.models
 
+import com.github.yoviep.home.domain.models.Area
 import com.github.yoviep.home.presentation.ui.dialog.sorting.SortingUiModel
 
 
@@ -12,4 +13,7 @@ import com.github.yoviep.home.presentation.ui.dialog.sorting.SortingUiModel
 sealed class HomeEventState {
     object OnSortingClick : HomeEventState()
     data class OnSortingClicked(val sort: SortingUiModel) : HomeEventState()
+
+    object OnFilterClick : HomeEventState()
+    data class OnFilterClicked(val area: Area) : HomeEventState()
 }
