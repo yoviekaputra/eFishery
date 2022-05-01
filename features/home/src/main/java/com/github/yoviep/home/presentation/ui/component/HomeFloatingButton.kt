@@ -52,7 +52,7 @@ fun HomeFloatingButton(
             Text(
                 text = text,
                 fontSize = 14.sp,
-                fontWeight = FontWeight.W400,
+                fontWeight = FontWeight.W500,
                 color = if (active) {
                     colorPrimary
                 } else {

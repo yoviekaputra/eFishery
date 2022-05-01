@@ -5,6 +5,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.collectAsState
+import com.github.yoviep.home.presentation.models.HomeEventState
+import com.github.yoviep.home.presentation.ui.dialog.sorting.SortDialog
+import com.github.yoviep.home.presentation.ui.dialog.sorting.SortingUiModel
 import com.github.yoviep.home.presentation.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,6 +27,7 @@ class HomeActivity : AppCompatActivity() {
             HomeScreen(
                 uiState = uiState.value,
                 onSortingClick = {
+                    viewModel.onEventState(HomeEventState.OnSortingClick)
                 },
                 onFilterClick = {
                 },
@@ -32,6 +36,16 @@ class HomeActivity : AppCompatActivity() {
                 onAddClick = {
                 }
             )
+
+            if (uiState.value.showSortDialog) {
+                SortDialog(
+                    onCheckedClick = {
+                        viewModel.onEventState(HomeEventState.OnSortingClicked(it))
+                    },
+                    sorting = SortingUiModel.getSortingList(this),
+                    checked = uiState.value.sortBy
+                )
+            }
         }
     }
 }

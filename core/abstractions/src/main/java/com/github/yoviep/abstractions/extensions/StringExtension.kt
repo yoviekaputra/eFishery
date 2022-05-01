@@ -23,5 +23,5 @@ fun String?.toFormatRp(): String = if (isNullOrBlank()) {
 fun String?.orZero() = if (isNullOrBlank()) {
     "0"
 } else {
-    toDouble()
+    this
 }

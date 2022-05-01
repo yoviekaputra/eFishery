@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.github.yoviep.home.domain.models.CommodityFilter
 import com.github.yoviep.home.domain.usecases.AddCommodityUseCase
 import com.github.yoviep.home.domain.usecases.GetCommodityUseCase
+import com.github.yoviep.home.presentation.models.HomeEventState
 import com.github.yoviep.home.presentation.models.HomeUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -30,7 +31,9 @@ class HomeViewModel @Inject constructor(
     fun getCommodity() {
         viewModelScope.launch {
             getCommodityUseCase.invoke(
-                filter = CommodityFilter()
+                filter = CommodityFilter(
+                    sortBy = _uiState.value.sortBy?.key
+                ),
             ).onStart {
                 _uiState.update {
                     it.copy(isLoading = true)
@@ -47,6 +50,25 @@ class HomeViewModel @Inject constructor(
                 _uiState.update {
                     it.copy(items = items)
                 }
+            }
+        }
+    }
+
+    fun onEventState(event: HomeEventState) {
+        when (event) {
+            is HomeEventState.OnSortingClick -> {
+                _uiState.update {
+                    it.copy(showSortDialog = true)
+                }
+            }
+            is HomeEventState.OnSortingClicked -> {
+                _uiState.update {
+                    it.copy(
+                        sortBy = event.sort,
+                        showSortDialog = false
+                    )
+                }
+                getCommodity()
             }
         }
     }
