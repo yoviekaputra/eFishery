@@ -77,7 +77,11 @@ class HomeViewModel @Inject constructor(
             is HomeEventState.OnSortingClicked -> {
                 _uiState.update {
                     it.copy(
-                        sortBy = event.sort,
+                        sortBy = if (event.sort.key == null) {
+                            null
+                        } else {
+                            event.sort
+                        },
                         showSortDialog = false
                     )
                 }
