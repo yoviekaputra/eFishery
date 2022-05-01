@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -38,7 +38,7 @@ fun FilterDialog(
                 modifier = Modifier
                     .wrapContentHeight(),
                 content = {
-                    itemsIndexed(filtering) { position, item ->
+                    items(filtering) { item ->
                         TextCheckedItem(
                             text = item.province,
                             status = item.province == checked?.province,

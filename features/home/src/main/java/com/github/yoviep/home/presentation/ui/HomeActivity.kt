@@ -8,7 +8,6 @@ import androidx.compose.runtime.collectAsState
 import com.github.yoviep.home.presentation.models.HomeEventState
 import com.github.yoviep.home.presentation.ui.dialog.filter.FilterDialog
 import com.github.yoviep.home.presentation.ui.dialog.sorting.SortDialog
-import com.github.yoviep.home.presentation.ui.dialog.sorting.SortingUiModel
 import com.github.yoviep.home.presentation.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,7 +43,7 @@ class HomeActivity : AppCompatActivity() {
                     onCheckedClick = {
                         viewModel.onEventState(HomeEventState.OnSortingClicked(it))
                     },
-                    sorting = SortingUiModel.getSortingList(this),
+                    sorting = uiState.value.getSortingList(this),
                     checked = uiState.value.sortBy
                 )
             }
@@ -54,7 +53,7 @@ class HomeActivity : AppCompatActivity() {
                     onCheckedClick = {
                          viewModel.onEventState(HomeEventState.OnFilterClicked(it))
                     },
-                    filtering = uiState.value.areas,
+                    filtering = uiState.value.getAreas(),
                     checked = uiState.value.filterByArea
                 )
             }

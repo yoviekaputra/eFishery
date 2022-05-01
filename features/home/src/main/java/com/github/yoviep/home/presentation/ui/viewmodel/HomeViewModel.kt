@@ -91,7 +91,11 @@ class HomeViewModel @Inject constructor(
             is HomeEventState.OnFilterClicked -> {
                 _uiState.update {
                     it.copy(
-                        filterByArea = event.area,
+                        filterByArea = if (event.area.province == "Semua") {
+                            null
+                        } else {
+                            event.area
+                        },
                         showFilterDialog = false
                     )
                 }
