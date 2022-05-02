@@ -9,4 +9,4 @@ Aplikasi ini terdiri dari beberapa fitur untuk mempermudah kita dalam mencari da
 6. Mampu menambahkan komoditas baru, fitur ini harus menggunakan layanan internet.
 
 # Demo
-<img src="/previews/preview.mp4" width="80%">
+<img src="/previews/preview.gif" width="80%">
