@@ -1,6 +1,7 @@
 package com.github.yoviep.home.presentation.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -67,6 +68,7 @@ class HomeActivity : AppCompatActivity() {
             if (uiState.value.showAddDialog) {
                 CreateCommodityDialog(
                     commodity = uiState.value.newCommodity,
+                    isLoading = uiState.value.isLoading,
                     onChangeForm = {
                         viewModel.onEventState(HomeEventState.OnFormFieldChange(it))
                     },
@@ -74,6 +76,10 @@ class HomeActivity : AppCompatActivity() {
                         viewModel.onEventState(HomeEventState.OnAddNewSubmit)
                     }
                 )
+            }
+
+            if (uiState.value.errorMessage.isNotBlank()) {
+                Toast.makeText(this, uiState.value.errorMessage, Toast.LENGTH_SHORT).show()
             }
         }
     }

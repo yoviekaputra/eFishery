@@ -51,6 +51,15 @@ fun HomeScreen(
                         onSearchChanged = onSearchChanged,
                         onSearchClear = onSearchClear
                     )
+
+                    if (uiState.isLoading) {
+                        LinearProgressIndicator(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(2.dp),
+                            color = colorPrimary
+                        )
+                    }
                 }
             )
         },

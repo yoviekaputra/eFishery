@@ -11,9 +11,11 @@ import com.github.yoviep.home.domain.usecases.GetCommodityUseCase
 import com.github.yoviep.home.presentation.models.HomeEventState
 import com.github.yoviep.home.presentation.models.HomeUiState
 import com.github.yoviep.home.presentation.ui.dialog.sorting.SortingUiModel
+import com.github.yoviep.syncronize.domain.usecases.SyncUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 
@@ -27,7 +29,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getCommodityUseCase: GetCommodityUseCase,
     private val getAreaUseCase: GetAreaUseCase,
-    private val addCommodityUseCase: AddCommodityUseCase
+    private val addCommodityUseCase: AddCommodityUseCase,
+    private val syncUseCase: SyncUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -112,7 +115,13 @@ class HomeViewModel @Inject constructor(
 
     private fun onAddNewSubmit() {
         viewModelScope.launch {
-            addCommodityUseCase.invoke(_uiState.value.newCommodity)
+            addCommodityUseCase.invoke(getNewCommodity())
+                .map {
+                    syncUseCase.invoke()
+                }
+                .map {
+                    getCommodity()
+                }
                 .onStart {
                     _uiState.update {
                         it.copy(isLoading = true)
@@ -134,6 +143,12 @@ class HomeViewModel @Inject constructor(
                 }
         }
     }
+
+    private fun getNewCommodity(): Commodity = _uiState.value.newCommodity.copy(
+        uuid = UUID.randomUUID().toString(),
+        tglParsed = Date().toString(),
+        timestamp = System.currentTimeMillis().toString()
+    )
 
     private fun onSearchClear() {
         _uiState.update {

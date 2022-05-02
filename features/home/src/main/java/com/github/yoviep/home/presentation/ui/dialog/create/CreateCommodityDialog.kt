@@ -35,6 +35,7 @@ import com.github.yoviep.themes.colorPrimary
 @Composable
 fun CreateCommodityDialog(
     commodity: Commodity,
+    isLoading: Boolean,
     onChangeForm: (Commodity) -> Unit,
     onSubmit: () -> Unit
 ) {
@@ -45,7 +46,8 @@ fun CreateCommodityDialog(
                 .wrapContentHeight()
                 .background(
                     color = Color.White
-                ).padding(16.dp),
+                )
+                .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -96,14 +98,26 @@ fun CreateCommodityDialog(
             Button(
                 onClick = {
                     onSubmit.invoke()
-                }, colors = ButtonDefaults.buttonColors(
+                },
+                colors = ButtonDefaults.buttonColors(
                     backgroundColor = colorPrimary,
                     contentColor = Color.White
-                ), content = {
-                    Text(
-                        text = "Simpan",
-                        fontSize = 14.sp
-                    )
+                ),
+                enabled = !isLoading,
+                content = {
+                    if (isLoading) {
+                        CircularProgressIndicator(
+                            modifier = Modifier
+                                .size(24.dp)
+                                .align(Alignment.CenterVertically),
+                            color = Color.White
+                        )
+                    } else {
+                        Text(
+                            text = "Simpan",
+                            fontSize = 14.sp
+                        )
+                    }
                 }
             )
         }
