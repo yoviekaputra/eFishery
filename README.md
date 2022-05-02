@@ -7,3 +7,6 @@ Aplikasi ini terdiri dari beberapa fitur untuk mempermudah kita dalam mencari da
 4. Mampu melakukan pengurutan ataupun penyaringan secara bersamaan
 5. Mampu melakuan pencarian harga perikanan berdasarkan urutan dan atau penyaringan per provinsi.
 6. Mampu menambahkan komoditas baru, fitur ini harus menggunakan layanan internet.
+
+# Demo
+<img src="/previews/preview.mp4" width="80%">
