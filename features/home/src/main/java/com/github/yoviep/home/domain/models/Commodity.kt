@@ -9,4 +9,19 @@ data class Commodity(
     val size: String?,
     val tglParsed: String?,
     val timestamp: String?
-)
+) {
+
+    companion object {
+
+        fun empty() = Commodity(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        )
+    }
+}

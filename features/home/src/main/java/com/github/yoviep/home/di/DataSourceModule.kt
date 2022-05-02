@@ -1,7 +1,9 @@
 package com.github.yoviep.home.di
 
 import com.github.yoviep.home.data.source.LocalDataSource
-import com.github.yoviep.home.data.source.LocalDataSourceImpl
+import com.github.yoviep.home.data.source.local.LocalDataSourceImpl
+import com.github.yoviep.home.data.source.RemoteDataSource
+import com.github.yoviep.home.data.source.remote.RemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -24,4 +26,10 @@ abstract class DataSourceModule {
     abstract fun bindLocalDataSource(
         dataSource: LocalDataSourceImpl
     ): LocalDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindRemoteDataSource(
+        dataSource: RemoteDataSourceImpl
+    ): RemoteDataSource
 }

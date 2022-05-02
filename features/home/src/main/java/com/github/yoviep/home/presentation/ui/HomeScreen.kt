@@ -76,44 +76,75 @@ fun HomeScreen(
                         }
                     )
 
-                    Card(
-                        modifier = Modifier
+                    FloatingOption(
+                        modifier = Modifier.Companion
                             .align(Alignment.BottomCenter)
                             .padding(bottom = 24.dp),
-                        elevation = 4.dp,
-                        shape = RoundedCornerShape(20.dp),
-                        content = {
-                            Row(
-                                modifier = Modifier
-                                    .wrapContentHeight()
-                                    .wrapContentWidth(),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.Center,
-                                content = {
+                        uiState = uiState,
+                        onSortingClick = onSortingClick,
+                        onFilterClick = onFilterClick,
+                        onAddClick = onAddClick
+                    )
+                }
+            )
+        }
+    )
+}
 
-                                    HomeFloatingButton(
-                                        icon = R.drawable.ic_baseline_sort_24,
-                                        text = stringResource(id = R.string.sorting),
-                                        active = uiState.sortBy != null,
-                                        onClick = onSortingClick
-                                    )
+@Composable
+private fun FloatingOption(
+    modifier: Modifier = Modifier,
+    uiState: HomeUiState,
+    onSortingClick: () -> Unit,
+    onFilterClick: () -> Unit,
+    onAddClick: () -> Unit
+) {
+    Card(
+        modifier = modifier,
+        elevation = 4.dp,
+        shape = RoundedCornerShape(percent = 50),
+        content = {
+            Row(
+                modifier = Modifier
+                    .wrapContentHeight()
+                    .wrapContentWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
+                content = {
 
-                                    Divider(
-                                        modifier = Modifier
-                                            .height(32.dp)
-                                            .width(1.dp),
-                                        color = colorPrimary
-                                    )
+                    HomeFloatingButton(
+                        icon = R.drawable.ic_baseline_sort_24,
+                        text = stringResource(id = R.string.sorting),
+                        active = uiState.sortBy != null,
+                        onClick = onSortingClick
+                    )
 
-                                    HomeFloatingButton(
-                                        icon = R.drawable.ic_baseline_filter_alt_24,
-                                        text = stringResource(id = R.string.filter),
-                                        active = uiState.filterByArea != null,
-                                        onClick = onFilterClick
-                                    )
-                                }
-                            )
-                        }
+                    Divider(
+                        modifier = Modifier
+                            .height(32.dp)
+                            .width(1.dp),
+                        color = Color.Gray
+                    )
+
+                    HomeFloatingButton(
+                        icon = R.drawable.ic_baseline_filter_alt_24,
+                        text = stringResource(id = R.string.filter),
+                        active = uiState.filterByArea != null,
+                        onClick = onFilterClick
+                    )
+
+                    Divider(
+                        modifier = Modifier
+                            .height(32.dp)
+                            .width(1.dp),
+                        color = Color.Gray
+                    )
+
+                    HomeFloatingButton(
+                        icon = R.drawable.ic_baseline_add_24,
+                        text = "",
+                        active = true,
+                        onClick = onAddClick
                     )
                 }
             )

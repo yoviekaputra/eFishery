@@ -1,6 +1,7 @@
 package com.github.yoviep.home.presentation.models
 
 import com.github.yoviep.home.domain.models.Area
+import com.github.yoviep.home.domain.models.Commodity
 import com.github.yoviep.home.presentation.ui.dialog.sorting.SortingUiModel
 
 
@@ -19,4 +20,9 @@ sealed class HomeEventState {
 
     data class OnSearchChanged(val keyword: String) : HomeEventState()
     object OnSearchClear : HomeEventState()
+
+    object OnAddClick : HomeEventState()
+
+    data class OnFormFieldChange(val commodity: Commodity) : HomeEventState()
+    object OnAddNewSubmit : HomeEventState()
 }

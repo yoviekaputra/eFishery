@@ -1,7 +1,9 @@
 package com.github.yoviep.home.data.repository
 
+import com.github.yoviep.home.data.mapper.asData
 import com.github.yoviep.home.data.mapper.asDomain
 import com.github.yoviep.home.data.source.LocalDataSource
+import com.github.yoviep.home.data.source.RemoteDataSource
 import com.github.yoviep.home.domain.models.Commodity
 import com.github.yoviep.home.domain.models.CommodityFilter
 import com.github.yoviep.home.domain.repository.CommodityRepository
@@ -17,7 +19,8 @@ import javax.inject.Inject
  **/
 
 class CommodityRepositoryImpl @Inject constructor(
-    private val localDataSource: LocalDataSource
+    private val localDataSource: LocalDataSource,
+    private val remoteDataSource: RemoteDataSource
 ) : CommodityRepository {
 
     override fun get(filter: CommodityFilter): Flow<List<Commodity>> {
@@ -28,6 +31,9 @@ class CommodityRepositoryImpl @Inject constructor(
     }
 
     override fun add(commodity: Commodity): Flow<String> {
-        TODO("Not yet implemented")
+        return remoteDataSource.add(commodities = listOf(commodity.asData()))
+            .map {
+                it.updatedRange
+            }
     }
 }

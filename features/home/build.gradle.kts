@@ -62,5 +62,7 @@ dependencies {
 
     implementation(project(Modules.database))
 
+    implementation(project(Modules.Features.syncronize))
+
     implementation(project(Modules.Core.themes))
 }

@@ -20,11 +20,14 @@ data class HomeUiState(
     val errorMessage: String = "",
     val showSortDialog: Boolean = false,
     val showFilterDialog: Boolean = false,
+    val showAddDialog: Boolean = false,
 
     private val areas: List<Area> = emptyList(),
     val filterByArea: Area? = null,
     val sortBy: SortingUiModel? = null,
-    val keyword: String? = null
+    val keyword: String? = null,
+
+    val newCommodity: Commodity = Commodity.empty()
 ) {
 
     fun getSortingList(context: Context): List<SortingUiModel> {

@@ -2,6 +2,7 @@ package com.github.yoviep.home.data.mapper
 
 import com.github.yoviep.database.entity.CommodityEntity
 import com.github.yoviep.home.domain.models.Commodity
+import com.github.yoviep.syncronize.data.source.remote.models.CommodityResponse
 
 
 /**
@@ -17,3 +18,7 @@ fun CommodityEntity.asDomain() = Commodity(
 fun List<CommodityEntity>.asDomain() = map {
     it.asDomain()
 }
+
+fun Commodity.asData() = CommodityResponse(
+    uuid, areaCity, areaProvince, commodity, price, size, tglParsed, timestamp
+)

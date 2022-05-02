@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.collectAsState
 import com.github.yoviep.home.presentation.models.HomeEventState
+import com.github.yoviep.home.presentation.ui.dialog.create.CreateCommodityDialog
 import com.github.yoviep.home.presentation.ui.dialog.filter.FilterDialog
 import com.github.yoviep.home.presentation.ui.dialog.sorting.SortDialog
 import com.github.yoviep.home.presentation.ui.viewmodel.HomeViewModel
@@ -39,6 +40,7 @@ class HomeActivity : AppCompatActivity() {
                     viewModel.onEventState(HomeEventState.OnSearchClear)
                 },
                 onAddClick = {
+                    viewModel.onEventState(HomeEventState.OnAddClick)
                 }
             )
 
@@ -59,6 +61,18 @@ class HomeActivity : AppCompatActivity() {
                     },
                     filtering = uiState.value.getAreas(),
                     checked = uiState.value.filterByArea
+                )
+            }
+
+            if (uiState.value.showAddDialog) {
+                CreateCommodityDialog(
+                    commodity = uiState.value.newCommodity,
+                    onChangeForm = {
+                        viewModel.onEventState(HomeEventState.OnFormFieldChange(it))
+                    },
+                    onSubmit = {
+                        viewModel.onEventState(HomeEventState.OnAddNewSubmit)
+                    }
                 )
             }
         }

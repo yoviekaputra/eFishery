@@ -3,6 +3,7 @@ package com.github.yoviep.home.presentation.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.yoviep.home.domain.models.Area
+import com.github.yoviep.home.domain.models.Commodity
 import com.github.yoviep.home.domain.models.CommodityFilter
 import com.github.yoviep.home.domain.usecases.AddCommodityUseCase
 import com.github.yoviep.home.domain.usecases.GetAreaUseCase
@@ -90,6 +91,47 @@ class HomeViewModel @Inject constructor(
             is HomeEventState.OnSearchClear -> {
                 onSearchClear()
             }
+            is HomeEventState.OnAddClick -> {
+                _uiState.update {
+                    it.copy(
+                        showAddDialog = true,
+                        newCommodity = Commodity.empty()
+                    )
+                }
+            }
+            is HomeEventState.OnFormFieldChange -> {
+                _uiState.update {
+                    it.copy(newCommodity = event.commodity)
+                }
+            }
+            is HomeEventState.OnAddNewSubmit -> {
+                onAddNewSubmit()
+            }
+        }
+    }
+
+    private fun onAddNewSubmit() {
+        viewModelScope.launch {
+            addCommodityUseCase.invoke(_uiState.value.newCommodity)
+                .onStart {
+                    _uiState.update {
+                        it.copy(isLoading = true)
+                    }
+                }.onCompletion {
+                    _uiState.update {
+                        it.copy(isLoading = false)
+                    }
+                }.catch { throwable ->
+                    _uiState.update {
+                        it.copy(errorMessage = throwable.message.orEmpty())
+                    }
+                }.collect {
+                    _uiState.update {
+                        it.copy(
+                            showAddDialog = false
+                        )
+                    }
+                }
         }
     }
 
@@ -146,4 +188,5 @@ class HomeViewModel @Inject constructor(
             it.copy(showSortDialog = true)
         }
     }
+
 }
