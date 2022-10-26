@@ -7,14 +7,14 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class AreaResponse(
     @Json(name = "city")
-    val city: String,
+    val city: String?,
     @Json(name = "province")
-    val province: String
+    val province: String?
 )
 
 fun AreaResponse.asEntity() = AreaEntity(
-    city = city,
-    province = province
+    city = city.orEmpty(),
+    province = province.orEmpty()
 )
 
 fun List<AreaResponse>.asEntity() = map {
